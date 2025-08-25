@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NCF WiFi Student Registration</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="container">
+
+    <div class="header">
+      <img src="tiger.jpg" alt="NCF Logo">
+      <h2>NCF WIFI STUDENT REGISTRATION</h2>
+    </div>
+
+    <div class="form">
+      <p>Already have an account? <a href="index.html">Login here</a></p>
+
+      <input type="text" id="studentId" placeholder="Student ID" required>
+      <input type="text" id="fullName" placeholder="Full Name" required>
+      <input type="email" id="email" placeholder="School Email" required>
+      <input type="text" id="course" placeholder="Course / Department" required>
+      <input type="password" id="password" placeholder="Create Password" required>
+      <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+
+      <button type="button" class="login-btn" id="registerBtn">Register</button>
+
+      <p class="note">
+        I agree to follow NCF's Acceptable Use Policy.<br>
+        For assistance, visit the Registrar or IT Office.
+      </p>
+
+      <p id="notification" style="font-weight: bold; margin-top: 10px;"></p>
+    </div>
+  </div>
+</body>
+</html>
