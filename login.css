@@ -20,7 +20,7 @@
 
     .card .check {
       font-size: 40px;
-      color: #22c55e; /* green */
+      color: #22c55e; 
       margin-bottom: 15px;
     }
 
@@ -50,4 +50,5 @@
 
     .btn:hover {
       background-color: #16a34a;
+
     }
