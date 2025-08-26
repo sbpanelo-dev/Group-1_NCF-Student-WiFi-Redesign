@@ -10,7 +10,7 @@ body, html {
 }
 
 body {
-  background: url("lu(1).png") no-repeat center center/cover;
+  background: url("green.png") no-repeat center center/cover;
   display: flex;
   justify-content: flex-end; 
   align-items: center;
@@ -128,3 +128,4 @@ footer {
 .tap a:hover {
   text-decoration: underline;
 }
+
