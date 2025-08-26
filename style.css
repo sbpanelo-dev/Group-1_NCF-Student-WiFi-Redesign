@@ -93,21 +93,6 @@ form input {
   text-decoration: underline;
 }
 
-.appointment-btn {
-  padding: 15px;
-  font-size: 16px;
-  border-radius: 10px;
-  border: 2px solid red;
-  color: red;
-  border: 2px solid red;
-  font-weight: bold;
-}
-
-.appointment-btn:hover {
-  background: red;
-  color: white;
-}
-
 footer {
   padding: 15px;
   padding-bottom: 10px;
@@ -128,5 +113,6 @@ footer {
 .tap a:hover {
   text-decoration: underline;
 }
+
 
 
