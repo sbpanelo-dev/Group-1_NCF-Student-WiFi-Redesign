@@ -1,5 +1,6 @@
  body {
       font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, lightgreen, teal);
       margin: 0;
       padding: 0;
       display: flex;
@@ -95,4 +96,5 @@
     .back-btn:hover {
       background: #218838;
     }
+
 
