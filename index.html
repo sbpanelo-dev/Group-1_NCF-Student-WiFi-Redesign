@@ -3,7 +3,6 @@
 <head>
   <title>NCF WiFi Student Login</title>
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
 </head>
 <body>
   <div class="overlay">
@@ -15,10 +14,19 @@
       <form id="loginForm">
         <input type="text" id="loginId" placeholder="Enter your student ID / email" required>
         <input type="password" id="loginPassword" placeholder="Enter your password" required>
+
+        <label class="checkbox-label">
+          <input type="checkbox" id="showPassword"> Show Password
+        </label>
+        
+        <label class="checkbox-label">
+          <input type="checkbox" id="rememberMe"> Remember Me
+        </label>
+        
         <button type="submit" class="login-btn">Log in</button>
       </form>
 
-      <p id="loginNotification" style="margin-top:10px; font-weight:bold;"></p>
+      <p id="loginNotification"></p>
 
       <p class="register">Don't have an account? <a href="design.html">Register</a></p>
 
@@ -28,7 +36,7 @@
       </footer>
     </div>
   </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
-
-
