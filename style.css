@@ -26,7 +26,7 @@ body {
 }
 
 .login-container {
-  background: rgba(255, 255, 255, 0.95);
+  background: white;
   padding: 60px;
   padding-bottom: 10px;             
   border-radius: 20px;
@@ -52,7 +52,8 @@ p {
   margin-bottom: 25px;
 }
 
-form input {
+form input[type="text"],
+form input[type="password"] {
   width: 100%;
   padding: 15px;              
   margin: 15px 0;
@@ -61,27 +62,47 @@ form input {
   font-size: 20px;
 }
 
+.checkbox-label {
+  display: block;
+  text-align: left;
+  margin: 10px 0;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+}
+
+.checkbox-label input {
+  margin-right: 8px;
+  transform: scale(1.2);
+}
 
 .login-btn {
   width: 100%;
   padding: 15px;
-  background: #28a745;
+  background: #218838;
   border: none;
   color: white;
-  font-size: 18px;            
+  font-size: 20px;            
   border-radius: 10px;
   cursor: pointer;
   transition: 0.3s;
 }
 
-
 .login-btn:hover {
-  background: #218838;
+  background: #1e7e34;
+}
+
+
+#loginNotification {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #218838;
 }
 
 .register {
   margin-top: 15px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .register a {
@@ -97,12 +118,13 @@ footer {
   padding: 15px;
   padding-bottom: 10px;
   margin-top: 50px;
-  font-size: 12px;
+  font-size: 14px;
   color: #555;
 }
+
 .tap {
   margin-top: 15px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .tap a {
@@ -113,6 +135,3 @@ footer {
 .tap a:hover {
   text-decoration: underline;
 }
-
-
-
