@@ -1,8 +1,12 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () { 
+  function showNotification(element, message, color) {
+    element.style.color = color;
+    element.textContent = message;
+  }
 
   const registerBtn = document.getElementById("registerBtn");
   if (registerBtn) {
-    registerBtn.addEventListener("click", function() {
+    registerBtn.addEventListener("click", function () {
       const studentId = document.getElementById("studentId").value.trim();
       const fullName = document.getElementById("fullName").value.trim();
       const email = document.getElementById("email").value.trim();
@@ -12,65 +16,85 @@ document.addEventListener("DOMContentLoaded", function() {
       const notification = document.getElementById("notification");
 
       if (!studentId || !fullName || !email || !course || !password || !confirmPassword) {
-        notification.style.color = "red";
-        notification.textContent = "⚠️ Please fill in all fields.";
-        return;
+        return showNotification(notification, "⚠️ Please fill in all fields.", "red");
       }
 
       if (password !== confirmPassword) {
-        notification.style.color = "red";
-        notification.textContent = "⚠️ Passwords do not match.";
-        return;
+        return showNotification(notification, "⚠️ Passwords do not match.", "red");
       }
 
       let users = JSON.parse(localStorage.getItem("users")) || [];
-
       let existingUser = users.find(u => u.studentId === studentId || u.email === email);
+
       if (existingUser) {
-        notification.style.color = "orange";
-        notification.textContent = "⚠️ You are already registered with this Student ID or Email.";
-        return;
+        return showNotification(notification, "⚠️ Already registered with this Student ID or Email.", "orange");
       }
 
-      let newUser = { studentId, fullName, email, course, password };
+      let hashedPassword = btoa(password);
+
+      let newUser = { studentId, fullName, email, course, password: hashedPassword };
       users.push(newUser);
       localStorage.setItem("users", JSON.stringify(users));
 
-      notification.style.color = "green";
-      notification.textContent = "✅ Registration successful! Redirecting to login...";
+      showNotification(notification, "✅ Registration successful! Redirecting to login...", "green");
 
       setTimeout(() => {
-        window.location.href = "index.html";
+        window.location.href = "index.html"; 
       }, 2000);
     });
   }
 
-
   const loginForm = document.getElementById("loginForm");
   if (loginForm) {
-    loginForm.addEventListener("submit", function(e) {
+    const loginIdInput = document.getElementById("loginId");
+    const loginPasswordInput = document.getElementById("loginPassword");
+    const rememberMeCheckbox = document.getElementById("rememberMe");
+    const showPasswordCheckbox = document.getElementById("showPassword");
+
+    const savedCredentials = JSON.parse(localStorage.getItem("rememberedUser"));
+    if (savedCredentials) {
+      loginIdInput.value = savedCredentials.loginId;
+      loginPasswordInput.value = atob(savedCredentials.password);
+      rememberMeCheckbox.checked = true;
+    }
+
+    if (showPasswordCheckbox) {
+      showPasswordCheckbox.addEventListener("change", function () {
+        loginPasswordInput.type = this.checked ? "text" : "password";
+      });
+    }
+
+    loginForm.addEventListener("submit", function (e) {
       e.preventDefault();
-      const loginId = document.getElementById("loginId").value.trim();
-      const loginPassword = document.getElementById("loginPassword").value;
+      const loginId = loginIdInput.value.trim();
+      const loginPassword = loginPasswordInput.value;
       const loginNotification = document.getElementById("loginNotification");
 
       let users = JSON.parse(localStorage.getItem("users")) || [];
+      let hashedPassword = btoa(loginPassword);
 
-      let validUser = users.find(u =>
-        (u.studentId === loginId || u.email === loginId) && u.password === loginPassword
+      let validUser = users.find(
+        u => (u.studentId === loginId || u.email === loginId) && u.password === hashedPassword
       );
 
       if (validUser) {
-        loginNotification.style.color = "green";
-        loginNotification.textContent = "✅ Login successful! Welcome " + validUser.fullName;
+        showNotification(loginNotification, "✅ Login successful! Welcome " + validUser.fullName, "green");
         localStorage.setItem("currentUser", JSON.stringify(validUser));
+
+        if (rememberMeCheckbox.checked) {
+          localStorage.setItem("rememberedUser", JSON.stringify({
+            loginId: loginId,
+            password: hashedPassword
+          }));
+        } else {
+          localStorage.removeItem("rememberedUser"); 
+        }
 
         setTimeout(() => {
           window.location.href = "login.html";
         }, 2000);
       } else {
-        loginNotification.style.color = "red";
-        loginNotification.textContent = "⚠️ Invalid Student ID/Email or Password.";
+        showNotification(loginNotification, "⚠️ Invalid Student ID/Email or Password.", "red");
       }
     });
   }
